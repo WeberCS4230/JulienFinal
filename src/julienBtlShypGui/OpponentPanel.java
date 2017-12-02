@@ -9,8 +9,10 @@ public class OpponentPanel extends JPanel {
   
   public OpponentPanel() {
     this.setLayout(new GridLayout(5,5));
-    for(int i=0;i<25;i++) {
-      this.add(new JButton("btn asdfsadfasdfsadf" + Integer.toString(i)));
+    for(int i=0;i<5;i++) {
+      for(int j=0;j<5;j++) {
+        this.add(new WaterButton(i,j));
+      }
     }
   }
 }

@@ -15,7 +15,6 @@ public class ChatPanel extends JPanel {
     chatArea.setFont(new Font("Arial", Font.PLAIN, 20));
 //    chatArea.setEditable(false);
     chatArea.setLineWrap(true);
-
     setLayout(new BorderLayout());
 
     add(new JScrollPane(chatArea), BorderLayout.CENTER);

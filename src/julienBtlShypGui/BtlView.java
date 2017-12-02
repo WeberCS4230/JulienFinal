@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 public class BtlView extends JFrame{
   private NotificationsPanel notificationsPanel;
   private CenterPanel centerPanel;
+  private BottomPanel bottomPanel;
   
   public BtlView() {
     super();
@@ -19,6 +20,9 @@ public class BtlView extends JFrame{
     
     centerPanel = new CenterPanel();
     add(centerPanel, BorderLayout.CENTER);
+    
+    bottomPanel = new BottomPanel();
+    add(bottomPanel, BorderLayout.SOUTH);
     
     setTitle("Steve's BtlShyp");
     setMinimumSize(new Dimension(1200, 1000));
