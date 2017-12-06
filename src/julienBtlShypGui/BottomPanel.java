@@ -18,13 +18,14 @@ import javax.swing.SwingUtilities;
 import main.btlshyp.view.event.ChatEvent;
 
 public class BottomPanel extends JPanel {
-  private BtlView ancestor;
+  private BtlView owner;
   private static JButton btnSend;
   JEditorPane inputPane;
   JScrollPane scrlPane;
 
-  public BottomPanel() {
-    BtlView btlView = (BtlView) SwingUtilities.getWindowAncestor(this);
+  public BottomPanel(BtlView btlView) {
+    this.owner = btlView;
+    //owner = (BtlView) SwingUtilities.getWindowAncestor(this);
     Dimension dim = getPreferredSize();
     dim.width = 400;
     dim.height = 100;
@@ -52,7 +53,7 @@ public class BottomPanel extends JPanel {
       public void actionPerformed(ActionEvent e) {
         String chat = inputPane.getText();
         if(chat != null && chat.length()>0) {
-          ancestor.sendChat(e);
+          owner.sendChat(e);
         }
       }
     });

@@ -10,19 +10,19 @@ import javax.swing.JTextArea;
 
 public class CenterPanel extends JPanel {
   private MySeaPanel mySea;
-  private ChatPanel chatPanel;
-  private JTextArea chatArea;
+//  private ChatPanel chatPanel;
+  private JTextArea chatDisplayArea;
   private OpponentPanel opponentSea;
 
   public CenterPanel() {
     this.mySea = new MySeaPanel();
-    this.chatPanel = new ChatPanel();
+//    this.chatPanel = new ChatPanel();
     this.opponentSea = new OpponentPanel();
-    this.chatArea = new JTextArea();
-    chatArea.setFont(new Font("Arial", Font.PLAIN, 20));
+    this.chatDisplayArea = new JTextArea();
+    chatDisplayArea.setFont(new Font("Arial", Font.PLAIN, 20));
     //  chatArea.setEditable(false);
-  chatArea.setLineWrap(true);
-  chatArea.setText("asdflasdasdfasdfas");
+  chatDisplayArea.setLineWrap(true);
+  chatDisplayArea.setText("Welcome");
 
     // setLayout(new BorderLayout());
     // add(mySea,BorderLayout.CENTER);
@@ -53,7 +53,7 @@ public class CenterPanel extends JPanel {
     c.weightx = 0.2;
     c.weighty = 1.0;
 //    add(chatPanel, c);
-    add(chatArea, c);
+    add(chatDisplayArea, c);
     
     c.fill = GridBagConstraints.VERTICAL;
 //    c.fill = GridBagConstraints.HORIZONTAL;
@@ -66,7 +66,11 @@ public class CenterPanel extends JPanel {
   }
   
   public void displayChat(String user, String chat) {
-    chatPanel.displayChat(user, chat);
+    String from = (user == null) ? "******  " : user;
+    if(chat!=null &&chat.length()>0) {
+      chatDisplayArea.append(from + ": " + chat);
+    }
+  
   }
 
 }

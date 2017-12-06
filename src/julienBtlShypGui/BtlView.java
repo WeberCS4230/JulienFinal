@@ -30,7 +30,7 @@ public class BtlView extends View{
     centerPanel = new CenterPanel();
     add(centerPanel, BorderLayout.CENTER);
     
-    bottomPanel = new BottomPanel();
+    bottomPanel = new BottomPanel(this);
     add(bottomPanel, BorderLayout.SOUTH);
     
     setTitle("Steve's BtlShyp");
@@ -121,7 +121,9 @@ public class BtlView extends View{
     String chat = bottomPanel.inputPane.getText();
     if(chat!=null && chat.length()>0) {
       ChatEvent chatEvent = new ChatEvent(e,chat);
-      chatListener.chatEventOccurred(chatEvent);
+      if(chatListener != null) {
+        chatListener.chatEventOccurred(chatEvent);
+      }
     }
   }
 

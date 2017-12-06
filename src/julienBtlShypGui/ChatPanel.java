@@ -9,20 +9,20 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 public class ChatPanel extends JPanel {
-  private JTextArea chatArea;
+  private JTextArea chatDisplayArea;
   public ChatPanel() {
-    this.chatArea = new JTextArea();
-    chatArea.setFont(new Font("Arial", Font.PLAIN, 20));
-//    chatArea.setEditable(false);
-    chatArea.setLineWrap(true);
+    this.chatDisplayArea = new JTextArea();
+    chatDisplayArea.setFont(new Font("Arial", Font.PLAIN, 20));
+    chatDisplayArea.setEditable(false);
+    chatDisplayArea.setLineWrap(true);
     setLayout(new BorderLayout());
 
-    add(new JScrollPane(chatArea), BorderLayout.CENTER);
-    chatArea.setMinimumSize(new Dimension(400,900));
+    add(new JScrollPane(chatDisplayArea), BorderLayout.CENTER);
+    chatDisplayArea.setMinimumSize(new Dimension(400,900));
 
   }
   
   public void displayChat(String user, String chat) {
-    chatArea.append("/t"+ user + ": " + chat);
+    chatDisplayArea.append("/t"+ user + ": " + chat);
   }
 }
