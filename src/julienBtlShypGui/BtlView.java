@@ -5,7 +5,9 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
-public class BtlView extends JFrame{
+import main.btlshyp.view.View;
+
+public class BtlView extends View{
   private NotificationsPanel notificationsPanel;
   private CenterPanel centerPanel;
   private BottomPanel bottomPanel;
@@ -28,24 +30,9 @@ public class BtlView extends JFrame{
     setMinimumSize(new Dimension(1200, 1000));
     setSize(1200, 1000);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//    setVisible(true);
     setExtendedState(JFrame.MAXIMIZED_BOTH); 
     setVisible(true);
   }
-  //display notifications
-  
-  //display my board
-  // select ship placement my board
-  // send chose boat place
-  
-  //display opp board
-  // select attack coords opponent board
-  // send attack
-  
-  
-  // display chat
-  
-  // input chat
-  // send chat
+
   
 }
