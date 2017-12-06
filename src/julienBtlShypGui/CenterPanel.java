@@ -63,10 +63,10 @@ public class CenterPanel extends JPanel {
     c.weightx = 0.4;
     c.weighty = 1.0;
     add(opponentSea, c);
-    
-
-    
-
+  }
+  
+  public void displayChat(String user, String chat) {
+    chatPanel.displayChat(user, chat);
   }
 
 }

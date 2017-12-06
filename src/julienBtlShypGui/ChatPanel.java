@@ -21,4 +21,8 @@ public class ChatPanel extends JPanel {
     chatArea.setMinimumSize(new Dimension(400,900));
 
   }
+  
+  public void displayChat(String user, String chat) {
+    chatArea.append("/t"+ user + ": " + chat);
+  }
 }

@@ -15,14 +15,16 @@ import javax.swing.JScrollPane;
 import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 
-public class BottomPanel extends JPanel {
+import main.btlshyp.view.event.ChatEvent;
 
+public class BottomPanel extends JPanel {
+  private BtlView ancestor;
   private static JButton btnSend;
-  JEditorPane msgPane;
+  JEditorPane inputPane;
   JScrollPane scrlPane;
 
   public BottomPanel() {
-
+    BtlView btlView = (BtlView) SwingUtilities.getWindowAncestor(this);
     Dimension dim = getPreferredSize();
     dim.width = 400;
     dim.height = 100;
@@ -31,24 +33,27 @@ public class BottomPanel extends JPanel {
     setLayout(new BorderLayout());
 
     btnSend = new JButton("Send");
-    msgPane = new JEditorPane();
+    inputPane = new JEditorPane();
 
     btnSend.setFont(new Font("Arial", Font.PLAIN, 20));
     btnSend.setPreferredSize(new Dimension(70, 40));
 
-    msgPane.setPreferredSize(new Dimension(70, 70));
-    msgPane.setFont(new Font("Arial", Font.PLAIN, 20));
-    msgPane.setBackground(Color.lightGray);
+    inputPane.setPreferredSize(new Dimension(70, 70));
+    inputPane.setFont(new Font("Arial", Font.PLAIN, 20));
+    inputPane.setBackground(Color.lightGray);
 
     // to add CTRL + Enter functionality to chat input
     CtrlEnterAction ceAction = new CtrlEnterAction();
-    msgPane.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, ActionEvent.CTRL_MASK), "doEnterAction");
-    msgPane.getActionMap().put("doEnterAction", ceAction);
+    inputPane.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, ActionEvent.CTRL_MASK), "doEnterAction");
+    inputPane.getActionMap().put("doEnterAction", ceAction);
 
     btnSend.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        printNewChat();
+        String chat = inputPane.getText();
+        if(chat != null && chat.length()>0) {
+          ancestor.sendChat(e);
+        }
       }
     });
 
@@ -59,20 +64,11 @@ public class BottomPanel extends JPanel {
     btnSend.setPreferredSize(new Dimension(80, 40));
     add(bs1, BorderLayout.WEST);
     add(btnSend, BorderLayout.EAST);
-    scrlPane = new JScrollPane(msgPane);
+    scrlPane = new JScrollPane(inputPane);
     add(scrlPane, BorderLayout.CENTER);
     //add(btnSend, BorderLayout.AFTER_LAST_LINE);
 
-    msgPane.requestFocusInWindow();
-  }
-
-  public void printNewChat() {
-    String chat = "";
-    if (msgPane.getText().length() > 0) {
-      chat = msgPane.getText();
-      // send it
-      msgPane.setText("");
-    }
+    inputPane.requestFocusInWindow();
   }
 
   static class CtrlEnterAction extends AbstractAction {
