@@ -30,11 +30,6 @@ public class CenterPanel extends JPanel {
     chatDisplayArea.setLineWrap(true);
     chatDisplayArea.setText("Welcome");
 
-    // setLayout(new BorderLayout());
-    // add(mySea,BorderLayout.CENTER);
-    // add(chatPanel, BorderLayout.WEST);
-    // add(opponentSea, BorderLayout.EAST);
-
     setLayout(new GridBagLayout());
     GridBagConstraints c = new GridBagConstraints();
 
@@ -69,6 +64,10 @@ public class CenterPanel extends JPanel {
     add(opponentSea, c);
   }
 
+  public void resetGame() {
+    mySea.fillButtons(mySea);
+    chatDisplayArea.setText("");
+  }
   public void displayChat(String user, String chat) {
     String from = (user == null) ? "" : user;
     if (chat != null && chat.length() > 0) {

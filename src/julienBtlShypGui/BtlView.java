@@ -54,6 +54,8 @@ public class BtlView extends View{
     setSize(1200, 1000);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setExtendedState(JFrame.MAXIMIZED_BOTH); 
+    // TODO: REMOVE ME AFTER GUI TESTING , THE CONTROLLER WILL CALL THIS
+    resetGame();
 //    setVisible(true);
   }
 
@@ -111,10 +113,10 @@ public class BtlView extends View{
 
   @Override
   public void notYourTurn() {
-  isMyTurn = false;
-  centerPanel.notYourTurn();
-  notificationsPanel.notifyOppSea("");
-  notificationsPanel.notifyMySea("Waiting on opponent...");
+//  isMyTurn = false;
+//  centerPanel.notYourTurn();
+//  notificationsPanel.notifyOppSea("");
+//  notificationsPanel.notifyMySea("Waiting on opponent...");
   }
 
   @Override
@@ -134,8 +136,9 @@ public class BtlView extends View{
 
   @Override
   public void resetGame() {
-    // TODO Auto-generated method stub
-    super.resetGame();
+    centerPanel.resetGame();
+    notificationsPanel.resetGame();
+    bottomPanel.resetGame();
   }
 
   @Override
