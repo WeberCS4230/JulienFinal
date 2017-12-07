@@ -60,8 +60,7 @@ public class MySeaPanel extends JPanel {
 
   
 public void setCoordinate(ActionEvent e) {
-  System.out.println(e.getActionCommand());
-  BtlButton btn = (BtlButton)e.getSource();
+  JButton btn = (JButton)e.getSource();
   btn.setBackground(Color.WHITE);
   owner.attemptSetShip(e);
 }

@@ -63,9 +63,11 @@ public class BtlView extends View{
   public void attemptSetShip(ActionEvent e) {
 
       if(setShipListener != null && shipToPlace != null) {
-       
+       String strXY = e.getActionCommand();
+       int x = Character.getNumericValue(strXY.charAt(1));
+       int y = Character.getNumericValue(strXY.charAt(4));
         BtlButton btn = (BtlButton)e.getSource();
-        coordinates.add(new Coordinate(btn.getX(),btn.getY()));
+        coordinates.add(new Coordinate(x,y));
         
         if(coordinates.size() == shipToPlace.getShipSize()) {
           
