@@ -36,6 +36,15 @@ public class BtlView extends View{
   
   public BtlView() {
     super();
+
+  }
+  
+  @Override
+  public void resetGame() {
+    notificationsPanel = null;
+    centerPanel = null;
+    bottomPanel = null;
+    this.shipToPlace = null;
     this.isMyTurn = false;
     this.numShipsPlaced = 0;
     this.coordinates = new HashSet<>();
@@ -58,6 +67,9 @@ public class BtlView extends View{
     // TODO: REMOVE ME AFTER GUI TESTING , THE CONTROLLER WILL CALL THIS
    // resetGame();
 //    setVisible(true);
+    notificationsPanel.resetGame();
+    centerPanel.resetGame();
+    bottomPanel.resetGame();
   }
 
   @Override
@@ -136,12 +148,7 @@ public class BtlView extends View{
     super.registerSetShipListener(listener);
   }
 
-  @Override
-  public void resetGame() {
-    centerPanel.resetGame();
-    notificationsPanel.resetGame();
-    bottomPanel.resetGame();
-  }
+
 
   @Override
   public void sendAttack(ActionEvent e) {
