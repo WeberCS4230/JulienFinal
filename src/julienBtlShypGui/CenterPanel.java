@@ -66,6 +66,7 @@ public class CenterPanel extends JPanel {
 
   public void resetGame() {
     mySea.fillButtons(mySea);
+    opponentSea.fillButtons(opponentSea);
     chatDisplayArea.setText("");
   }
   public void displayChat(String user, String chat) {

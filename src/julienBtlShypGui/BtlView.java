@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -55,7 +56,7 @@ public class BtlView extends View{
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setExtendedState(JFrame.MAXIMIZED_BOTH); 
     // TODO: REMOVE ME AFTER GUI TESTING , THE CONTROLLER WILL CALL THIS
-    resetGame();
+   // resetGame();
 //    setVisible(true);
   }
 
@@ -66,7 +67,6 @@ public class BtlView extends View{
        String strXY = e.getActionCommand();
        int x = Character.getNumericValue(strXY.charAt(1));
        int y = Character.getNumericValue(strXY.charAt(4));
-        BtlButton btn = (BtlButton)e.getSource();
         coordinates.add(new Coordinate(x,y));
         
         if(coordinates.size() == shipToPlace.getShipSize()) {
@@ -145,9 +145,11 @@ public class BtlView extends View{
 
   @Override
   public void sendAttack(ActionEvent e) {
-   BtlButton btn = (BtlButton)e.getSource();
-   AttackEvent ae = new AttackEvent(e, new Coordinate(btn.getX(), btn.getY()));
-   if(attackListener != null && isMyTurn == true) {
+    String strXY = e.getActionCommand();
+    int x = Character.getNumericValue(strXY.charAt(1));
+    int y = Character.getNumericValue(strXY.charAt(4));
+   AttackEvent ae = new AttackEvent(e, new Coordinate(x,y));
+   if(attackListener != null ) {//&& isMyTurn == true) {
      attackListener.attackEventOccurred(ae);
    }
   }

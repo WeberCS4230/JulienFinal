@@ -23,7 +23,7 @@ import main.btlshyp.view.event.SetShipListener;
 
 public class MySeaPanel extends JPanel {
   public static int GRID_SIZE = 5;
-  private BtlButton[][] btlButtons;
+  private JButton[][] btlButtons;
   private BtlView owner;
   
 
@@ -31,7 +31,7 @@ public class MySeaPanel extends JPanel {
   public MySeaPanel(BtlView owner) {
  
     this.owner = owner;
-    this.btlButtons = new BtlButton[GRID_SIZE][GRID_SIZE];
+    this.btlButtons = new JButton[GRID_SIZE][GRID_SIZE];
     this.setLayout(new GridLayout(GRID_SIZE,GRID_SIZE));
 
   } // end ctor
@@ -53,7 +53,7 @@ public class MySeaPanel extends JPanel {
           }
         });
         panel.add(temp);
-        //btlButtons[i][j] = temp;
+        btlButtons[i][j] = temp;
       }
     }
   }

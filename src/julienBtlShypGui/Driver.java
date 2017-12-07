@@ -25,9 +25,9 @@ public class Driver {
     
 //    
 //
-//    Controller controller = new Controller(btlView);
-//    controller.init();
-//    controller.playGame();
+    Controller controller = new Controller(btlView);
+    controller.init();
+    controller.playGame();
 
   }
 }
