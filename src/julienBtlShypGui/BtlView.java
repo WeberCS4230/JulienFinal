@@ -1,17 +1,23 @@
 package julienBtlShypGui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.swing.JFrame;
 
 import main.btlshyp.message.AttackResponseMessage;
+import main.btlshyp.model.Coordinate;
 import main.btlshyp.model.Ship;
 import main.btlshyp.view.View;
 import main.btlshyp.view.event.AttackListener;
 import main.btlshyp.view.event.ChatEvent;
 import main.btlshyp.view.event.ChatListener;
+import main.btlshyp.view.event.SetShipEvent;
 import main.btlshyp.view.event.SetShipListener;
 
 public class BtlView extends View{
@@ -19,9 +25,12 @@ public class BtlView extends View{
   private NotificationsPanel notificationsPanel;
   private CenterPanel centerPanel;
   private BottomPanel bottomPanel;
+  private Ship shipToPlace;
+  private HashSet<Coordinate> coordinates;
   
   public BtlView() {
     super();
+    this.coordinates = new HashSet<>();
     setLayout(new BorderLayout());
     
     notificationsPanel = new NotificationsPanel();
@@ -41,14 +50,26 @@ public class BtlView extends View{
     setVisible(true);
   }
 
-  public void setCoordinate(int x, int y) {
-    System.out.println("This button's x is : " + Integer.toString(x));
-  }
   @Override
   public void attemptSetShip(ActionEvent e) {
-    // TODO Auto-generated method stub
-    super.attemptSetShip(e);
-  }
+
+      if(setShipListener != null && shipToPlace != null) {
+       
+        BtlButton btn = (BtlButton)e.getSource();
+        coordinates.add(new Coordinate(btn.getX(),btn.getY()));
+        
+        if(coordinates.size() == shipToPlace.getShipSize()) {
+          
+            shipToPlace.setShipCoordinates(new ArrayList<Coordinate>(coordinates));
+            String strCoordinates = "";
+            for(Coordinate c : shipToPlace.getShipCoordinates()) {
+              strCoordinates += "(" + Integer.toString(c.x) + ", " + Integer.toString(c.y) + ")/n";
+            }
+            SetShipEvent sse = new SetShipEvent(e, shipToPlace);
+            setShipListener.setShipEventOccurred(sse);
+          }  
+        }
+  }// end attempt set ship
 
   @Override
   public void displayAttack(AttackResponseMessage message) {
@@ -132,10 +153,10 @@ public class BtlView extends View{
 
   @Override
   public void setShip(Ship ship) {
+    this.shipToPlace = ship;
     String shipName = ship.getShipType().toString();
     String sz =Integer.toString(ship.getShipSize());
     notificationsPanel.notifyMySea("Set the " + shipName + " " + sz + " squares");
-    super.setShip(ship);
   }
 
   @Override

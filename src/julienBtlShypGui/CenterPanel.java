@@ -4,9 +4,12 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
 
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+
+import main.btlshyp.view.event.SetShipListener;
 
 public class CenterPanel extends JPanel {
   private BtlView owner;
@@ -15,9 +18,9 @@ public class CenterPanel extends JPanel {
   private JTextArea chatDisplayArea;
   private OpponentPanel opponentSea;
 
+
   public CenterPanel(BtlView owner) {
-    this.owner = owner;
-    this.mySea = new MySeaPanel(this);
+    this.mySea = new MySeaPanel(owner);
 //    this.chatPanel = new ChatPanel();
     this.opponentSea = new OpponentPanel();
     this.chatDisplayArea = new JTextArea();
@@ -72,10 +75,6 @@ public class CenterPanel extends JPanel {
     if(chat!=null &&chat.length()>0) {
       chatDisplayArea.append(from + ": " + chat);
     }
-  }
-  
-  public void setCoordinate(int x, int y) {
-    owner.setCoordinate(x,y);
   }
 
 }
