@@ -28,23 +28,27 @@ public class MySeaPanel extends JPanel {
 
   
   public MySeaPanel(BtlView owner) {
-    
+ 
     this.owner = owner;
     this.btlButtons = new BtlButton[GRID_SIZE][GRID_SIZE];
     this.setLayout(new GridLayout(GRID_SIZE,GRID_SIZE));
+    fillButtons(this);
+  } // end ctor
+  
+  public void fillButtons(MySeaPanel panel) {
     for(int i=0;i<GRID_SIZE;i++) {
       for(int j=0;j<GRID_SIZE;j++) {
-        btlButtons[i][j] = new BtlButton( i, j, 160, 50);
-        btlButtons[i][j].addActionListener(new ActionListener() {
+        BtlButton temp =  new BtlButton( i, j, 160, 50);
+        temp.addActionListener(new ActionListener() {
           public void actionPerformed(ActionEvent e) {
             setCoordinate(e);
           }
         });
-        this.add( btlButtons[i][j]);
+        panel.add(temp);
+        btlButtons[i][j] = temp;
       }
     }
-  } // end ctor
-  
+  }
 
   
 public void setCoordinate(ActionEvent e) {

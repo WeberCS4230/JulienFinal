@@ -29,12 +29,14 @@ public class BtlView extends View{
   private BottomPanel bottomPanel;
   private Ship shipToPlace;
   private HashSet<Coordinate> coordinates;
-  private String username;
+  private int numShipsPlaced;
   
   private boolean isMyTurn;
   
   public BtlView() {
     super();
+    this.isMyTurn = false;
+    this.numShipsPlaced = 0;
     this.coordinates = new HashSet<>();
     setLayout(new BorderLayout());
     
@@ -52,7 +54,7 @@ public class BtlView extends View{
     setSize(1200, 1000);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setExtendedState(JFrame.MAXIMIZED_BOTH); 
-    setVisible(true);
+//    setVisible(true);
   }
 
   @Override
@@ -75,8 +77,7 @@ public class BtlView extends View{
 
   @Override
   public void displayAttack(AttackResponseMessage message) {
-    // TODO Auto-generated method stub
-    super.displayAttack(message);
+    centerPanel.displayAttack(message);
   }
 
   @Override
@@ -86,7 +87,7 @@ public class BtlView extends View{
 
   @Override
   public void displayNotification(String text) {
-   centerPanel.displayChat("******* ",  text + " *******");
+   centerPanel.displayChat("",  text);
   }
 
   @Override
@@ -96,19 +97,22 @@ public class BtlView extends View{
 
   @Override
   public void displayShip(Ship ship) {
+    numShipsPlaced++;
     centerPanel.displayShip(ship);
-    super.displayShip(ship);
+    if(numShipsPlaced == 4) {
+      centerPanel.lockMySea();
+    }
   }
 
   @Override
   public String getUsername() {
-    this.username =  JOptionPane.showInputDialog(null, "Enter username: ");
-    return username;
+    return JOptionPane.showInputDialog(null, "Enter username: ");
   }
 
   @Override
   public void notYourTurn() {
   isMyTurn = false;
+  centerPanel.notYourTurn();
   notificationsPanel.notifyOppSea("");
   notificationsPanel.notifyMySea("Waiting on opponent...");
   }
@@ -164,6 +168,7 @@ public class BtlView extends View{
 
   @Override
   public void yourTurn() {
+    centerPanel.yourTurn();
     notificationsPanel.notifyOppSea("Attack!");
     isMyTurn = true;
   }

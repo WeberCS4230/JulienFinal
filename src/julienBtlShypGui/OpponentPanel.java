@@ -8,6 +8,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import main.btlshyp.message.AttackResponseMessage;
+
 public class OpponentPanel extends JPanel {
   public static int GRID_SIZE = 5;
   private BtlButton[][] btlButtons;
@@ -34,5 +36,17 @@ public class OpponentPanel extends JPanel {
     BtlButton btn = (BtlButton)e.getSource();
     btn.setBackground(Color.YELLOW);
     owner.sendAttack(e);
+  }
+  
+  public void displayAttack(AttackResponseMessage message) {
+    int x = message.getCoordinate().x;
+    int y = message.getCoordinate().y;
+    if(message.getHitOrMiss() == AttackResponseMessage.HitOrMiss.HIT) {
+      btlButtons[x][y].setBackground(Color.red);
+      java.awt.Toolkit.getDefaultToolkit().beep();
+    }
+    else {
+      btlButtons[x][y].setBackground(Color.white);
+    }
   }
 }

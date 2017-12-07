@@ -70,9 +70,9 @@ public class CenterPanel extends JPanel {
   }
 
   public void displayChat(String user, String chat) {
-    String from = (user == null) ? "******  " : user;
+    String from = (user == null) ? "" : user;
     if (chat != null && chat.length() > 0) {
-      chatDisplayArea.append(from + ": " + chat);
+      chatDisplayArea.append(from + ": " + chat + "\n");
     }
   }
 
@@ -82,5 +82,20 @@ public class CenterPanel extends JPanel {
 
   public void displayOpponentAttack(AttackResponseMessage message) {
     mySea.displayOpponentAttack(message);
+  }
+  
+  public void displayAttack(AttackResponseMessage message) {
+    opponentSea.displayAttack(message);
+  }
+  public void notYourTurn() {
+    opponentSea.setEnabled(false);
+  }
+  
+  public void yourTurn() {
+    opponentSea.setEnabled(true);
+  }
+  
+  public void lockMySea() {
+    mySea.setEnabled(false);
   }
 }

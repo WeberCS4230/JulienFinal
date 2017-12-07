@@ -1,5 +1,7 @@
 package julienBtlShypGui;
 
+import java.awt.EventQueue;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,8 +16,15 @@ public class Driver {
   public static void main(String[] args) {
     System.setProperty("java.util.logging.SimpleFormatter.format", LOG_FORMAT);
     logger.info("Application Starting");
-
     BtlView btlView = new BtlView();
+    EventQueue.invokeLater(new Runnable() {
+      public void run() {
+        btlView.setVisible(true);
+     }
+  });
+    
+    
+
     Controller controller = new Controller(btlView);
     controller.init();
     controller.playGame();
