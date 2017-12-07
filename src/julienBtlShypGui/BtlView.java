@@ -61,10 +61,7 @@ public class BtlView extends View{
         if(coordinates.size() == shipToPlace.getShipSize()) {
           
             shipToPlace.setShipCoordinates(new ArrayList<Coordinate>(coordinates));
-            String strCoordinates = "";
-            for(Coordinate c : shipToPlace.getShipCoordinates()) {
-              strCoordinates += "(" + Integer.toString(c.x) + ", " + Integer.toString(c.y) + ")/n";
-            }
+            coordinates.clear();
             SetShipEvent sse = new SetShipEvent(e, shipToPlace);
             setShipListener.setShipEventOccurred(sse);
           }  
