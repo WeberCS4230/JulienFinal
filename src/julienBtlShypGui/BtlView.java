@@ -9,11 +9,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import main.btlshyp.message.AttackResponseMessage;
 import main.btlshyp.model.Coordinate;
 import main.btlshyp.model.Ship;
 import main.btlshyp.view.View;
+import main.btlshyp.view.event.AttackEvent;
 import main.btlshyp.view.event.AttackListener;
 import main.btlshyp.view.event.ChatEvent;
 import main.btlshyp.view.event.ChatListener;
@@ -27,6 +29,9 @@ public class BtlView extends View{
   private BottomPanel bottomPanel;
   private Ship shipToPlace;
   private HashSet<Coordinate> coordinates;
+  private String username;
+  
+  private boolean isMyTurn;
   
   public BtlView() {
     super();
@@ -86,42 +91,40 @@ public class BtlView extends View{
 
   @Override
   public void displayOpponentAttack(AttackResponseMessage message) {
-    // TODO Auto-generated method stub
-    super.displayOpponentAttack(message);
+      centerPanel.displayOpponentAttack(message);
   }
 
   @Override
   public void displayShip(Ship ship) {
-    // TODO Auto-generated method stub
+    centerPanel.displayShip(ship);
     super.displayShip(ship);
   }
 
   @Override
   public String getUsername() {
-    return super.getUsername();
+    this.username =  JOptionPane.showInputDialog(null, "Enter username: ");
+    return username;
   }
 
   @Override
   public void notYourTurn() {
-    // TODO Auto-generated method stub
-    super.notYourTurn();
+  isMyTurn = false;
+  notificationsPanel.notifyOppSea("");
+  notificationsPanel.notifyMySea("Waiting on opponent...");
   }
 
   @Override
   public void registerAttackListener(AttackListener listener) {
-    // TODO Auto-generated method stub
     super.registerAttackListener(listener);
   }
 
   @Override
   public void registerChatListener(ChatListener listener) {
-    // TODO Auto-generated method stub
     super.registerChatListener(listener);
   }
 
   @Override
   public void registerSetShipListener(SetShipListener listener) {
-    // TODO Auto-generated method stub
     super.registerSetShipListener(listener);
   }
 
@@ -133,8 +136,11 @@ public class BtlView extends View{
 
   @Override
   public void sendAttack(ActionEvent e) {
-    // TODO Auto-generated method stub
-    super.sendAttack(e);
+   BtlButton btn = (BtlButton)e.getSource();
+   AttackEvent ae = new AttackEvent(e, new Coordinate(btn.getX(), btn.getY()));
+   if(attackListener != null && isMyTurn == true) {
+     attackListener.attackEventOccurred(ae);
+   }
   }
 
   @Override
@@ -158,8 +164,8 @@ public class BtlView extends View{
 
   @Override
   public void yourTurn() {
-    // TODO Auto-generated method stub
-    super.yourTurn();
+    notificationsPanel.notifyOppSea("Attack!");
+    isMyTurn = true;
   }
 
   

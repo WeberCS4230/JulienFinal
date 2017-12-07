@@ -14,6 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import main.btlshyp.message.AttackResponseMessage;
 import main.btlshyp.model.Coordinate;
 import main.btlshyp.model.Ship;
 import main.btlshyp.view.event.SetShipEvent;
@@ -48,15 +49,27 @@ public class MySeaPanel extends JPanel {
   
 public void setCoordinate(ActionEvent e) {
   BtlButton btn = (BtlButton)e.getSource();
-  btn.setBackground(Color.GRAY);
+  btn.setBackground(Color.WHITE);
   owner.attemptSetShip(e);
 }
   
   public void displayShip(Ship ship) {
     if(ship != null && ship.isValid()) {
       for(Coordinate c : ship.getShipCoordinates()) {
-        btlButtons[c.x][c.y].setBackground(Color.red);//setEnabled(false);
+        btlButtons[c.x][c.y].setBackground(Color.GRAY);//setEnabled(false);
       }
+    }
+  }
+  
+  public void displayOpponentAttack(AttackResponseMessage message) {
+    int x = message.getCoordinate().x;
+    int y = message.getCoordinate().y;
+    if(message.getHitOrMiss() == AttackResponseMessage.HitOrMiss.HIT) {
+      btlButtons[x][y].setBackground(Color.red);
+      java.awt.Toolkit.getDefaultToolkit().beep();
+    }
+    else {
+      btlButtons[x][y].setBackground(Color.white);
     }
   }
   
