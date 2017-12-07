@@ -27,7 +27,7 @@ public class BtlView extends View{
     notificationsPanel = new NotificationsPanel();
     add(notificationsPanel, BorderLayout.NORTH);
     
-    centerPanel = new CenterPanel();
+    centerPanel = new CenterPanel(this);
     add(centerPanel, BorderLayout.CENTER);
     
     bottomPanel = new BottomPanel(this);
@@ -41,6 +41,9 @@ public class BtlView extends View{
     setVisible(true);
   }
 
+  public void setCoordinate(int x, int y) {
+    System.out.println("This button's x is : " + Integer.toString(x));
+  }
   @Override
   public void attemptSetShip(ActionEvent e) {
     // TODO Auto-generated method stub
@@ -129,7 +132,9 @@ public class BtlView extends View{
 
   @Override
   public void setShip(Ship ship) {
-    // TODO Auto-generated method stub
+    String shipName = ship.getShipType().toString();
+    String sz =Integer.toString(ship.getShipSize());
+    notificationsPanel.notifyMySea("Set the " + shipName + " " + sz + " squares");
     super.setShip(ship);
   }
 

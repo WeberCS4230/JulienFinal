@@ -44,9 +44,9 @@ public class NotificationsPanel extends JPanel {
     add(opponentSeaNotificatonArea);
    
     String text = "Place the Battleship ( four spaces )";
-    mySeaNotificatonArea.setText("  Place the Battleship ( four spaces )");
+    mySeaNotificatonArea.setText("  Your Sea");
     generalNotificatonArea.setText("\tBtlShyp");
-    opponentSeaNotificatonArea.setText("\tAttack");
+    opponentSeaNotificatonArea.setText("\tOpponent's Sea");
   }
   
   public void notifyMySea(String text) {

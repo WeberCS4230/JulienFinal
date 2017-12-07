@@ -59,15 +59,12 @@ public class BottomPanel extends JPanel {
     });
 
     JPanel bs1 = new JPanel();
-    JPanel bs2 = new JPanel();
     bs1.setPreferredSize(new Dimension(300, 100));
-    bs2.setPreferredSize(new Dimension(300, 100));
     btnSend.setPreferredSize(new Dimension(80, 40));
     add(bs1, BorderLayout.WEST);
     add(btnSend, BorderLayout.EAST);
     scrlPane = new JScrollPane(inputPane);
     add(scrlPane, BorderLayout.CENTER);
-    //add(btnSend, BorderLayout.AFTER_LAST_LINE);
 
     inputPane.requestFocusInWindow();
   }

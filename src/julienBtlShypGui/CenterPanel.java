@@ -9,13 +9,15 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 public class CenterPanel extends JPanel {
+  private BtlView owner;
   private MySeaPanel mySea;
 //  private ChatPanel chatPanel;
   private JTextArea chatDisplayArea;
   private OpponentPanel opponentSea;
 
-  public CenterPanel() {
-    this.mySea = new MySeaPanel();
+  public CenterPanel(BtlView owner) {
+    this.owner = owner;
+    this.mySea = new MySeaPanel(this);
 //    this.chatPanel = new ChatPanel();
     this.opponentSea = new OpponentPanel();
     this.chatDisplayArea = new JTextArea();
@@ -70,7 +72,10 @@ public class CenterPanel extends JPanel {
     if(chat!=null &&chat.length()>0) {
       chatDisplayArea.append(from + ": " + chat);
     }
+  }
   
+  public void setCoordinate(int x, int y) {
+    owner.setCoordinate(x,y);
   }
 
 }

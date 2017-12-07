@@ -7,9 +7,9 @@ import java.awt.Font;
 import javax.swing.JButton;
 
 public class BtlButton extends JButton {
-  public int x;
-  public int y;
-  public int size;
+  private int x;
+  private int y;
+  private int size;
   
   public BtlButton(int x, int y, int size, int fontSize) {
     super("O");
@@ -24,6 +24,13 @@ public class BtlButton extends JButton {
 
     //setForeground(Color.blue);
     setFont(new Font("Arial", Font.PLAIN, fontSize));
+  }
+  
+  public int getX() {
+    return x;
+  }
+  public int getY() {
+    return y;
   }
   
 }
