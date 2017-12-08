@@ -76,6 +76,13 @@ public void setCoordinate(ActionEvent e) {
     }
   }
   
+  public void lockMySea() {
+    for(int i=0;i<GRID_SIZE;i++) {
+      for(int j=0;j<GRID_SIZE;j++) {
+        btlButtons[i][j].setEnabled(false);
+      }
+    }
+  }
   public void displayOpponentAttack(AttackResponseMessage message) {
     int x = message.getCoordinate().x;
     int y = message.getCoordinate().y;

@@ -50,6 +50,7 @@ public class OpponentPanel extends JPanel {
         temp.setBackground(Color.blue);
         temp.setForeground(Color.white);
         temp.setFont(new Font("Arial", Font.PLAIN, 25));
+        temp.setEnabled(false);
         temp.addActionListener(new ActionListener() {
           public void actionPerformed(ActionEvent e) {
             sendAttack(e);
@@ -65,7 +66,21 @@ public class OpponentPanel extends JPanel {
     btn.setBackground(Color.YELLOW);
     owner.sendAttack(e);
   }
+  public void lockOppSea() {
+    for(int i=0;i<GRID_SIZE;i++) {
+      for(int j=0;j<GRID_SIZE;j++) {
+        btlButtons[i][j].setEnabled(false);
+      }
+    }
+  }
   
+  public void unlockOppSea() {
+    for(int i=0;i<GRID_SIZE;i++) {
+      for(int j=0;j<GRID_SIZE;j++) {
+        btlButtons[i][j].setEnabled(true);
+      }
+    }
+  }
   public void displayAttack(AttackResponseMessage message) {
     int x = message.getCoordinate().x;
     int y = message.getCoordinate().y;

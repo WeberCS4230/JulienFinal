@@ -87,15 +87,20 @@ public class CenterPanel extends JPanel {
     opponentSea.displayAttack(message);
   }
   public void notYourTurn() {
-    opponentSea.setEnabled(false);
+    opponentSea.lockOppSea();
+    
   }
   
   public void yourTurn() {
-    mySea.setEnabled(false);
     opponentSea.setEnabled(true);
+    opponentSea.unlockOppSea();
   }
   
   public void lockMySea() {
-    mySea.setEnabled(false);
+    mySea.lockMySea();
+  }
+  
+  public void lockOppSea() {
+    opponentSea.lockOppSea();
   }
 }

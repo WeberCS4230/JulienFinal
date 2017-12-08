@@ -56,7 +56,7 @@ public class BtlView extends View{
     setTitle("Steve's BtlShyp");
     setMinimumSize(new Dimension(1200, 1000));
     
-    setSize(1200, 1000);
+    //setSize(1200, 1000);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setExtendedState(JFrame.MAXIMIZED_BOTH); 
     
@@ -149,6 +149,7 @@ public class BtlView extends View{
 
   @Override
   public void sendAttack(ActionEvent e) {
+    centerPanel.lockOppSea();
     String strXY = e.getActionCommand();
     int x = Character.getNumericValue(strXY.charAt(1));
     int y = Character.getNumericValue(strXY.charAt(4));
