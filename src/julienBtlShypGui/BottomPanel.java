@@ -14,6 +14,10 @@ import javax.swing.JScrollPane;
 import javax.swing.KeyStroke;
 
 public class BottomPanel extends JPanel {
+  /**
+   * 
+   */
+  private static final long serialVersionUID = 1L;
   private BtlView owner;
   private static JButton btnSend;
   JEditorPane inputPane;
@@ -48,6 +52,7 @@ public class BottomPanel extends JPanel {
       public void actionPerformed(ActionEvent e) {
         String chat = inputPane.getText();
         if(chat != null && chat.length()>0) {
+     
           owner.sendChat(e);
         }
       }
@@ -63,6 +68,11 @@ public class BottomPanel extends JPanel {
   } 
   
   public void resetGame() {
+    inputPane.setText("");
+    inputPane.requestFocusInWindow();
+  }
+  
+  public void resetChat() {
     inputPane.setText("");
     inputPane.requestFocusInWindow();
   }

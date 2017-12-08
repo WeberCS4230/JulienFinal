@@ -13,6 +13,10 @@ import main.btlshyp.model.Coordinate;
 import main.btlshyp.model.Ship;
 
 public class MySeaPanel extends JPanel {
+  /**
+   * 
+   */
+  private static final long serialVersionUID = 1L;
   public static int GRID_SIZE = 5;
   private JButton[][] btlButtons;
   private BtlView owner;

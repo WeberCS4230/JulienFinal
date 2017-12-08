@@ -11,6 +11,10 @@ import main.btlshyp.model.Ship;
 
 public class CenterPanel extends JPanel {
  
+  /**
+   * 
+   */
+  private static final long serialVersionUID = 1L;
   private MySeaPanel mySea;
   private JTextArea chatDisplayArea;
   private OpponentPanel opponentSea;

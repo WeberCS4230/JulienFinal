@@ -9,6 +9,10 @@ import javax.swing.JTextArea;
 import javax.swing.border.Border;
 
 public class NotificationsPanel extends JPanel {
+  /**
+   * 
+   */
+  private static final long serialVersionUID = 1L;
   private JTextArea mySeaNotificatonArea;
   private JTextArea generalNotificatonArea;
   private JTextArea opponentSeaNotificatonArea;

@@ -1,14 +1,11 @@
 package julienBtlShypGui;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Set;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -25,6 +22,10 @@ import main.btlshyp.view.event.SetShipListener;
 
 public class BtlView extends View{
   
+  /**
+   * 
+   */
+  private static final long serialVersionUID = 1L;
   private NotificationsPanel notificationsPanel;
   private CenterPanel centerPanel;
   private BottomPanel bottomPanel;
@@ -166,6 +167,7 @@ public class BtlView extends View{
         chatListener.chatEventOccurred(chatEvent);
       }
     }
+    bottomPanel.resetChat();
   }
 
   @Override

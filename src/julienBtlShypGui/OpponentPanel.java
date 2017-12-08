@@ -13,6 +13,10 @@ import javax.swing.JPanel;
 import main.btlshyp.message.AttackResponseMessage;
 
 public class OpponentPanel extends JPanel {
+  /**
+   * 
+   */
+  private static final long serialVersionUID = 1L;
   public static int GRID_SIZE = 5;
   private JButton[][] btlButtons;
   private BtlView owner;
