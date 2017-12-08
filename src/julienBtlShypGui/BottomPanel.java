@@ -66,9 +66,13 @@ public class BottomPanel extends JPanel {
     scrlPane = new JScrollPane(inputPane);
     add(scrlPane, BorderLayout.CENTER);
 
+  
+  }  // end ctor
+  
+  public void resetGame() {
+    inputPane.setText("");
     inputPane.requestFocusInWindow();
   }
-
   static class CtrlEnterAction extends AbstractAction {
 
     private static final long serialVersionUID = 1L;

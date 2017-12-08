@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -35,6 +36,11 @@ public class BtlView extends View{
   
   public BtlView() {
     super();
+    initGame();
+  }
+  
+ 
+  public void initGame() {
     this.isMyTurn = false;
     this.numShipsPlaced = 0;
     this.coordinates = new HashSet<>();
@@ -51,19 +57,32 @@ public class BtlView extends View{
     
     setTitle("Steve's BtlShyp");
     setMinimumSize(new Dimension(1200, 1000));
+    
     setSize(1200, 1000);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setExtendedState(JFrame.MAXIMIZED_BOTH); 
-//    setVisible(true);
+    
+   setVisible(true);
+ 
+  }
+  
+  @Override 
+  public void resetGame(){
+    numShipsPlaced = 0;
+      centerPanel.resetGame();
+      notificationsPanel.resetGame();
+      bottomPanel.resetGame();
+    
   }
 
   @Override
   public void attemptSetShip(ActionEvent e) {
 
       if(setShipListener != null && shipToPlace != null) {
-       
-        BtlButton btn = (BtlButton)e.getSource();
-        coordinates.add(new Coordinate(btn.getX(),btn.getY()));
+       String strXY = e.getActionCommand();
+       int x = Character.getNumericValue(strXY.charAt(1));
+       int y = Character.getNumericValue(strXY.charAt(4));
+        coordinates.add(new Coordinate(x,y));
         
         if(coordinates.size() == shipToPlace.getShipSize()) {
           
@@ -132,17 +151,15 @@ public class BtlView extends View{
     super.registerSetShipListener(listener);
   }
 
-  @Override
-  public void resetGame() {
-    // TODO Auto-generated method stub
-    super.resetGame();
-  }
+
 
   @Override
   public void sendAttack(ActionEvent e) {
-   BtlButton btn = (BtlButton)e.getSource();
-   AttackEvent ae = new AttackEvent(e, new Coordinate(btn.getX(), btn.getY()));
-   if(attackListener != null && isMyTurn == true) {
+    String strXY = e.getActionCommand();
+    int x = Character.getNumericValue(strXY.charAt(1));
+    int y = Character.getNumericValue(strXY.charAt(4));
+   AttackEvent ae = new AttackEvent(e, new Coordinate(x,y));
+   if(attackListener != null ) {//&& isMyTurn == true) {
      attackListener.attackEventOccurred(ae);
    }
   }

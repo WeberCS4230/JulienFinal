@@ -28,7 +28,7 @@ public class NotificationsPanel extends JPanel {
     mySeaNotificatonArea.setBorder(border);
     
     generalNotificatonArea = new JTextArea();
-    generalNotificatonArea.setFont(new Font("Arial", Font.PLAIN, 35));
+    generalNotificatonArea.setFont(new Font("Arial", Font.PLAIN, 25));
     generalNotificatonArea.setEditable(false);
     generalNotificatonArea.setBorder(border);
 //    generalNotificatonArea.setBorder(new Border(BorderFactory.createBevelBorder(Color.BLACK)));
@@ -42,8 +42,9 @@ public class NotificationsPanel extends JPanel {
     add(mySeaNotificatonArea);
     add(generalNotificatonArea);
     add(opponentSeaNotificatonArea);
-   
-    String text = "Place the Battleship ( four spaces )";
+  }
+  
+  public void resetGame() {
     mySeaNotificatonArea.setText("  Your Sea");
     generalNotificatonArea.setText("\tBtlShyp");
     opponentSeaNotificatonArea.setText("\tOpponent's Sea");
