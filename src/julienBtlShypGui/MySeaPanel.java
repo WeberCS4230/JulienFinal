@@ -4,22 +4,13 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Set;
-
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-
 import main.btlshyp.message.AttackResponseMessage;
 import main.btlshyp.model.Coordinate;
 import main.btlshyp.model.Ship;
-import main.btlshyp.view.event.SetShipEvent;
-import main.btlshyp.view.event.SetShipListener;
 
 public class MySeaPanel extends JPanel {
   public static int GRID_SIZE = 5;
@@ -34,17 +25,17 @@ public class MySeaPanel extends JPanel {
     this.btlButtons = new JButton[GRID_SIZE][GRID_SIZE];
     this.setLayout(new GridLayout(GRID_SIZE,GRID_SIZE));
     fillButtons(this);
-  } // end ctor
+  }
   
   public void resetGame() {
     for(int i=0;i<GRID_SIZE;i++) {
       for(int j=0;j<GRID_SIZE;j++) {
-          
         btlButtons[i][j].setBackground(Color.blue);
         btlButtons[i][j].setForeground(Color.white);
       }
     }
   }
+  
   public void fillButtons(MySeaPanel panel) {
     int size = 150;
     for(int i=0;i<GRID_SIZE;i++) {
@@ -67,7 +58,6 @@ public class MySeaPanel extends JPanel {
     }
   }
 
-  
 public void setCoordinate(ActionEvent e) {
   JButton btn = (JButton)e.getSource();
   btn.setBackground(Color.WHITE);
@@ -77,7 +67,7 @@ public void setCoordinate(ActionEvent e) {
   public void displayShip(Ship ship) {
     if(ship != null && ship.isValid()) {
       for(Coordinate c : ship.getShipCoordinates()) {
-        btlButtons[c.x][c.y].setBackground(Color.GRAY);//setEnabled(false);
+        btlButtons[c.x][c.y].setBackground(Color.GRAY);
       }
     }
   }

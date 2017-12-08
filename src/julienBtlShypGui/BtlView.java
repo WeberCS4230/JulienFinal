@@ -32,8 +32,6 @@ public class BtlView extends View{
   private HashSet<Coordinate> coordinates;
   private int numShipsPlaced;
   
-  private boolean isMyTurn;
-  
   public BtlView() {
     super();
     initGame();
@@ -41,7 +39,6 @@ public class BtlView extends View{
   
  
   public void initGame() {
-    this.isMyTurn = false;
     this.numShipsPlaced = 0;
     this.coordinates = new HashSet<>();
     setLayout(new BorderLayout());
@@ -72,7 +69,6 @@ public class BtlView extends View{
       centerPanel.resetGame();
       notificationsPanel.resetGame();
       bottomPanel.resetGame();
-    
   }
 
   @Override
@@ -92,7 +88,7 @@ public class BtlView extends View{
             setShipListener.setShipEventOccurred(sse);
           }  
         }
-  }// end attempt set ship
+  }
 
   @Override
   public void displayAttack(AttackResponseMessage message) {
@@ -130,7 +126,6 @@ public class BtlView extends View{
 
   @Override
   public void notYourTurn() {
-  isMyTurn = false;
   centerPanel.notYourTurn();
   notificationsPanel.notifyOppSea("");
   notificationsPanel.notifyMySea("Waiting on opponent...");
@@ -151,15 +146,13 @@ public class BtlView extends View{
     super.registerSetShipListener(listener);
   }
 
-
-
   @Override
   public void sendAttack(ActionEvent e) {
     String strXY = e.getActionCommand();
     int x = Character.getNumericValue(strXY.charAt(1));
     int y = Character.getNumericValue(strXY.charAt(4));
    AttackEvent ae = new AttackEvent(e, new Coordinate(x,y));
-   if(attackListener != null ) {//&& isMyTurn == true) {
+   if(attackListener != null ) {
      attackListener.attackEventOccurred(ae);
    }
   }
@@ -187,8 +180,6 @@ public class BtlView extends View{
   public void yourTurn() {
     centerPanel.yourTurn();
     notificationsPanel.notifyOppSea("Attack!");
-    isMyTurn = true;
   }
 
-  
 }

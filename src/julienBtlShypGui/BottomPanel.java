@@ -6,16 +6,12 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JEditorPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.KeyStroke;
-import javax.swing.SwingUtilities;
-
-import main.btlshyp.view.event.ChatEvent;
 
 public class BottomPanel extends JPanel {
   private BtlView owner;
@@ -25,7 +21,6 @@ public class BottomPanel extends JPanel {
 
   public BottomPanel(BtlView btlView) {
     this.owner = btlView;
-    //owner = (BtlView) SwingUtilities.getWindowAncestor(this);
     Dimension dim = getPreferredSize();
     dim.width = 400;
     dim.height = 100;
@@ -65,9 +60,7 @@ public class BottomPanel extends JPanel {
     add(btnSend, BorderLayout.EAST);
     scrlPane = new JScrollPane(inputPane);
     add(scrlPane, BorderLayout.CENTER);
-
-  
-  }  // end ctor
+  } 
   
   public void resetGame() {
     inputPane.setText("");

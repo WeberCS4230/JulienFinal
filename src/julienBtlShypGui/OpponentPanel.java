@@ -22,7 +22,7 @@ public class OpponentPanel extends JPanel {
     this.btlButtons = new JButton[GRID_SIZE][GRID_SIZE];
     this.setLayout(new GridLayout(GRID_SIZE,GRID_SIZE));
     fillButtons(this);
-  } // end ctor
+  } 
   
   public void resetGame() {
     for(int i=0;i<GRID_SIZE;i++) {

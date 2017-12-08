@@ -1,17 +1,12 @@
 package julienBtlShypGui;
 
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
-
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.border.Border;
-
-import java.awt.color.*;
 
 public class NotificationsPanel extends JPanel {
   private JTextArea mySeaNotificatonArea;
@@ -31,7 +26,6 @@ public class NotificationsPanel extends JPanel {
     generalNotificatonArea.setFont(new Font("Arial", Font.PLAIN, 25));
     generalNotificatonArea.setEditable(false);
     generalNotificatonArea.setBorder(border);
-//    generalNotificatonArea.setBorder(new Border(BorderFactory.createBevelBorder(Color.BLACK)));
     
     opponentSeaNotificatonArea = new JTextArea();
     opponentSeaNotificatonArea.setFont(new Font("Arial", Font.PLAIN, 30));
