@@ -33,9 +33,18 @@ public class MySeaPanel extends JPanel {
     this.owner = owner;
     this.btlButtons = new JButton[GRID_SIZE][GRID_SIZE];
     this.setLayout(new GridLayout(GRID_SIZE,GRID_SIZE));
-
+    fillButtons(this);
   } // end ctor
   
+  public void resetGame() {
+    for(int i=0;i<GRID_SIZE;i++) {
+      for(int j=0;j<GRID_SIZE;j++) {
+          
+        btlButtons[i][j].setBackground(Color.blue);
+        btlButtons[i][j].setForeground(Color.white);
+      }
+    }
+  }
   public void fillButtons(MySeaPanel panel) {
     int size = 150;
     for(int i=0;i<GRID_SIZE;i++) {

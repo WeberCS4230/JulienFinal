@@ -21,7 +21,19 @@ public class OpponentPanel extends JPanel {
     this.owner = owner;
     this.btlButtons = new JButton[GRID_SIZE][GRID_SIZE];
     this.setLayout(new GridLayout(GRID_SIZE,GRID_SIZE));
+    fillButtons(this);
   } // end ctor
+  
+  public void resetGame() {
+    for(int i=0;i<GRID_SIZE;i++) {
+      for(int j=0;j<GRID_SIZE;j++) {
+          
+        btlButtons[i][j].setBackground(Color.blue);
+        btlButtons[i][j].setForeground(Color.white);
+        btlButtons[i][j].setEnabled(true);
+      }
+    }
+  }
   
   public void fillButtons(OpponentPanel panel) {
     int size = 150;

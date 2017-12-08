@@ -36,15 +36,11 @@ public class BtlView extends View{
   
   public BtlView() {
     super();
-
+    initGame();
   }
   
-  @Override
-  public void resetGame() {
-    notificationsPanel = null;
-    centerPanel = null;
-    bottomPanel = null;
-    this.shipToPlace = null;
+ 
+  public void initGame() {
     this.isMyTurn = false;
     this.numShipsPlaced = 0;
     this.coordinates = new HashSet<>();
@@ -61,15 +57,22 @@ public class BtlView extends View{
     
     setTitle("Steve's BtlShyp");
     setMinimumSize(new Dimension(1200, 1000));
+    
     setSize(1200, 1000);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setExtendedState(JFrame.MAXIMIZED_BOTH); 
-    // TODO: REMOVE ME AFTER GUI TESTING , THE CONTROLLER WILL CALL THIS
-   // resetGame();
-//    setVisible(true);
-    notificationsPanel.resetGame();
-    centerPanel.resetGame();
-    bottomPanel.resetGame();
+    
+   setVisible(true);
+ 
+  }
+  
+  @Override 
+  public void resetGame(){
+    numShipsPlaced = 0;
+      centerPanel.resetGame();
+      notificationsPanel.resetGame();
+      bottomPanel.resetGame();
+    
   }
 
   @Override
@@ -127,10 +130,10 @@ public class BtlView extends View{
 
   @Override
   public void notYourTurn() {
-//  isMyTurn = false;
-//  centerPanel.notYourTurn();
-//  notificationsPanel.notifyOppSea("");
-//  notificationsPanel.notifyMySea("Waiting on opponent...");
+  isMyTurn = false;
+  centerPanel.notYourTurn();
+  notificationsPanel.notifyOppSea("");
+  notificationsPanel.notifyMySea("Waiting on opponent...");
   }
 
   @Override
